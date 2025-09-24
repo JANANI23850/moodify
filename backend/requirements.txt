@@ -1,0 +1,6 @@
+flask
+flask-cors
+tensorflow
+opencv-python
+numpy
+spotipy

@@ -21,6 +21,11 @@ function Moodify() {
   const [artists, setArtists] = useState([]);
   const [method, setMethod] = useState("upload");
   const [loading, setLoading] = useState(false);
+  const [darkMode, setDarkMode] = useState(true); // theme state
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
 
   // Detect emotion function
   const detectEmotion = async (imgData) => {
@@ -85,15 +90,17 @@ function Moodify() {
     artistFilter.length > 0
       ? songs
           .filter(
-            (s) => langFilter.includes(s.language) && artistFilter.includes(s.artist)
+            (s) =>
+              langFilter.includes(s.language) &&
+              artistFilter.includes(s.artist)
           )
           .slice(0, numSongs)
       : [];
 
   return (
-    <div className="app-container">
-      {/* CoverPage-style Navbar */}
-      <nav className="navbar">
+    <>
+      {/* Navbar outside app-container */}
+      <nav className={darkMode ? "navbar dark-mode" : "navbar light-mode"}>
         <div className="nav-container">
           <div className="logo" onClick={() => navigate("/")}>
             <i className="fas fa-music"></i>
@@ -109,96 +116,108 @@ function Moodify() {
             <button className="nav-link" onClick={() => navigate("/mood_companion")}>
               Mood Companion
             </button>
+            {/* Theme toggle button */}
+            <button className="theme-toggle" onClick={toggleTheme}>
+              {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+            </button>
           </div>
         </div>
       </nav>
 
-      {/* Page Header */}
-     <header className="moodify-header">
-  <div className="header-content">
-    <div className="header-text">
-      <h1>
-        🎵 Moodify: <span className="gradient-text">Music That Feels You</span>
-      </h1>
-     <p>✨ Experience AI-powered music recommendations based on your mood ✨</p>
-      
-    </div>
-    
-  </div>
-</header>
+      {/* Page container (separate from navbar) */}
+      <div className={darkMode ? "app-container dark-mode" : "app-container light-mode"}>
+        {/* Page Header */}
+        <header className="moodify-header">
+          <div className="header-content">
+            <div className="header-text">
+              <h1>
+                🎵 Moodify: <span className="gradient-text">Music That Feels You</span>
+              </h1>
+              <p>✨ Experience AI-powered music recommendations based on your mood ✨</p>
+            </div>
+          </div>
+        </header>
 
-      {/* Image upload/webcam */}
-      <div className="input-method">
-        <button
-          onClick={() => setMethod("upload")}
-          className={method === "upload" ? "active" : ""}
-        >
-          Upload Image
-        </button>
-        <button
-          onClick={() => setMethod("webcam")}
-          className={method === "webcam" ? "active" : ""}
-        >
-          Use Webcam
-        </button>
-      </div>
-
-      <div className="image-input">
-        {method === "upload" && (
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              if (!file) return;
-              const reader = new FileReader();
-              reader.onloadend = () => setImage(reader.result);
-              reader.readAsDataURL(file);
-            }}
-          />
-        )}
-        {method === "webcam" && (
-          <WebcamCapture enabled={!image} onCaptureDataUrl={setImage} />
-        )}
-      </div>
-
-      {image && (
-        <div className="image-preview">
-          <img src={image} alt="Preview" />
-          <button onClick={() => detectEmotion(image)} disabled={loading}>
-            {loading ? "Detecting..." : "Detect Emotion"}
+        {/* Image upload/webcam */}
+        <div className="input-method">
+          <button
+            onClick={() => setMethod("upload")}
+            className={method === "upload" ? "active" : ""}
+          >
+            Upload Image
+          </button>
+          <button
+            onClick={() => setMethod("webcam")}
+            className={method === "webcam" ? "active" : ""}
+          >
+            Use Webcam
           </button>
         </div>
-      )}
 
-      {emotion && <EmotionBox emotion={emotion} confidence={confidence} />}
+        <div className="image-input">
+          {method === "upload" && (
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onloadend = () => setImage(reader.result);
+                reader.readAsDataURL(file);
+              }}
+            />
+          )}
+          {method === "webcam" && (
+            <WebcamCapture enabled={!image} onCaptureDataUrl={setImage} />
+          )}
+        </div>
 
-      {/* Filters */}
-      {songs && songs.length > 0 && (
-        <Filters
-          languages={languages}
-          artists={artists}
-          langFilter={langFilter}
-          setLangFilter={setLangFilter}
-          artistFilter={artistFilter}
-          setArtistFilter={setArtistFilter}
-          numSongs={numSongs}
-          setNumSongs={setNumSongs}
-        />
-      )}
+        {/* Image preview or placeholder */}
+        <div className="image-preview-container">
+          {image ? (
+            <div className="image-preview">
+              <img src={image} alt="Preview" />
+              <button onClick={() => detectEmotion(image)} disabled={loading}>
+                {loading ? "Detecting..." : "Detect Emotion"}
+              </button>
+            </div>
+          ) : (
+            <div className="image-placeholder">
+              <p>No image uploaded yet. Upload an image or use your webcam.</p>
+            </div>
+          )}
+        </div>
 
-      {loading && <p className="loading-text">Fetching songs...</p>}
+        {emotion && <EmotionBox emotion={emotion} confidence={confidence} />}
 
-      {/* Songs */}
-      <div className="song-grid">
-        {filteredSongs.map((s, i) => (
-          <SongCard key={i} song={s} />
-        ))}
-        {filteredSongs.length === 0 && songs.length > 0 && (
-          <p>No songs match your filters.</p>
+        {/* Filters */}
+        {songs && songs.length > 0 && (
+          <Filters
+            languages={languages}
+            artists={artists}
+            langFilter={langFilter}
+            setLangFilter={setLangFilter}
+            artistFilter={artistFilter}
+            setArtistFilter={setArtistFilter}
+            numSongs={numSongs}
+            setNumSongs={setNumSongs}
+          />
         )}
+
+        {loading && <p className="loading-text">Fetching songs...</p>}
+
+        {/* Songs */}
+        <div className="song-grid">
+          {filteredSongs.map((s, i) => (
+            <SongCard key={i} song={s} />
+          ))}
+          {filteredSongs.length === 0 && songs.length > 0 && (
+            <p>No songs match your filters.</p>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

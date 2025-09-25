@@ -9,6 +9,16 @@ body, html {
 .landing-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 /* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e1e1e;
+  border-bottom: 1px solid #333;
+ 
+  padding: 0 20px; /* optional: add some horizontal padding */
+}
+
 .navbar { display: flex; justify-content: center; background: #1f1f1f; padding: 15px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.5);}
 .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; width: 100%; }
 .logo { display: flex; align-items: center; gap: 10px; font-size: 1.8rem; font-weight: bold; color: #00f2fe; }

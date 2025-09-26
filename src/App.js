@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import Moodify from "./components/Moodify";
 import LandingPage from "./components/LandingPage";
+import ChatJournal from "./components/ChatJournal";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/" element={<LandingPage />} />
+            <Route path="/mood_companion" element={<ChatJournal />} />
       
           </Routes>
         </Router>

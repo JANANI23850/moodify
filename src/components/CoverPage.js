@@ -21,24 +21,29 @@ const CoverPage = () => {
   ];
 
   return (
-    <div className="landing-container">
+   <>
 
       {/* Navbar */}
-      <nav className="navbar">
+     <nav className="navbar">
         <div className="nav-container">
-          <div className="logo">
+          <div className="logo" onClick={() => navigate("/")}>
             <i className="fas fa-music"></i>
             <span>Moodify</span>
           </div>
           <div className="nav-links">
-            <button onClick={() => navigate("/home")}>Home</button>
-            <button onClick={() => navigate("/detection")}>Detect Emotion</button>
-            <button onClick={() => navigate("/mood_companion")}>Mood Companion</button>
-           
+            <button className="nav-link" onClick={() => navigate("/home")}>
+              Home
+            </button>
+            <button className="nav-link" onClick={() => navigate("/detection")}>
+              Detect Emotion
+            </button>
+            <button className="nav-link" onClick={() => navigate("/mood_companion")}>
+              Mood Companion
+            </button>
           </div>
         </div>
       </nav>
-
+ <div className="landing-container">
      <section className="intro-section">
   <div className="intro-wrapper">
     {/* Left Content */}
@@ -139,6 +144,7 @@ const CoverPage = () => {
         </div>
       </footer>
     </div>
+    </>
   );
 };
 

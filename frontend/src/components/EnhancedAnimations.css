@@ -1,0 +1,591 @@
+/* Enhanced Animations CSS */
+
+/* Animated Orbs */
+.animated-orbs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  filter: blur(40px);
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+.orb.emotion-happy {
+  animation: orbFloatHappy 15s ease-in-out infinite;
+  opacity: 0.15;
+}
+
+.orb.emotion-sad {
+  animation: orbFloatSad 25s ease-in-out infinite;
+  opacity: 0.08;
+}
+
+.orb.emotion-angry {
+  animation: orbFloatAngry 12s ease-in-out infinite;
+  opacity: 0.12;
+}
+
+.orb.emotion-detecting {
+  animation: orbFloatDetecting 8s ease-in-out infinite;
+  opacity: 0.2;
+}
+
+/* Morphing Shapes */
+.morphing-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border-radius: 50%;
+  animation: morphShape 20s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  right: 15%;
+  animation-delay: -5s;
+}
+
+.shape-3 {
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: -10s;
+}
+
+.shape-4 {
+  width: 250px;
+  height: 250px;
+  top: 30%;
+  right: 30%;
+  animation-delay: -15s;
+}
+
+/* Animated Text Reveal */
+.animated-text-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animated-text-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating Action Button */
+.floating-action-btn {
+  position: relative;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.floating-action-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+}
+
+.floating-action-btn.clicked {
+  animation: buttonPulse 0.6s ease-out;
+}
+
+.btn-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease-out;
+}
+
+.floating-action-btn.clicked .btn-ripple {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-trail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.floating-action-btn:hover .btn-trail {
+  transform: translateX(100%);
+}
+
+/* Magnetic Cursor */
+.magnetic-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.1s ease-out;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #667eea;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease-out;
+}
+
+.cursor-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-out;
+}
+
+.magnetic-cursor.hovering .cursor-dot {
+  transform: translate(-50%, -50%) scale(2);
+  background: #764ba2;
+}
+
+.magnetic-cursor.hovering .cursor-ring {
+  transform: translate(-50%, -50%) scale(2);
+  border-color: rgba(118, 75, 162, 0.6);
+}
+
+/* Staggered Container */
+.staggered-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.staggered-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: staggeredFadeIn 0.6s ease-out forwards;
+}
+
+/* Parallax Element */
+.parallax-element {
+  will-change: transform;
+}
+
+/* Glitch Text */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text-main {
+  position: relative;
+  z-index: 1;
+}
+
+.glitch-text-copy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch-text.active .glitch-text-copy:nth-child(2) {
+  animation: glitch1 0.3s infinite;
+  color: #ff0040;
+  z-index: -1;
+}
+
+.glitch-text.active .glitch-text-copy:nth-child(3) {
+  animation: glitch2 0.3s infinite;
+  color: #00ffff;
+  z-index: -2;
+}
+
+/* Liquid Button */
+.liquid-button {
+  position: relative;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 50px;
+  background: transparent;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 2px solid #667eea;
+}
+
+.liquid-button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.liquid-button-liquid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquid-button:hover .liquid-button-liquid {
+  transform: translateY(0);
+}
+
+.liquid-button-bubble {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: bubbleFloat 3s ease-in-out infinite;
+}
+
+.liquid-button-bubble:nth-child(1) {
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.liquid-button-bubble:nth-child(2) {
+  left: 50%;
+  animation-delay: 1s;
+}
+
+.liquid-button-bubble:nth-child(3) {
+  left: 80%;
+  animation-delay: 2s;
+}
+
+/* Keyframe Animations */
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-20px, -60px) scale(0.9);
+    opacity: 0.08;
+  }
+  75% {
+    transform: translate(-40px, -20px) scale(1.05);
+    opacity: 0.12;
+  }
+}
+
+@keyframes orbFloatHappy {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.15;
+  }
+  33% {
+    transform: translate(50px, -40px) scale(1.2) rotate(120deg);
+    opacity: 0.2;
+  }
+  66% {
+    transform: translate(-30px, -80px) scale(0.8) rotate(240deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes orbFloatSad {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.08;
+  }
+  50% {
+    transform: translate(-10px, 20px) scale(0.7);
+    opacity: 0.05;
+  }
+}
+
+@keyframes orbFloatAngry {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.12;
+  }
+  25% {
+    transform: translate(60px, -20px) scale(1.3) rotate(90deg);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translate(-40px, -60px) scale(0.9) rotate(180deg);
+    opacity: 0.08;
+  }
+  75% {
+    transform: translate(-60px, 10px) scale(1.1) rotate(270deg);
+    opacity: 0.15;
+  }
+}
+
+@keyframes orbFloatDetecting {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
+  }
+  20% {
+    transform: translate(20px, -20px) scale(1.1);
+    opacity: 0.25;
+  }
+  40% {
+    transform: translate(-15px, -40px) scale(0.9);
+    opacity: 0.15;
+  }
+  60% {
+    transform: translate(-25px, -10px) scale(1.05);
+    opacity: 0.22;
+  }
+  80% {
+    transform: translate(10px, -30px) scale(0.95);
+    opacity: 0.18;
+  }
+}
+
+@keyframes morphShape {
+  0%, 100% {
+    border-radius: 50%;
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(90deg) scale(1.1);
+  }
+  50% {
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    transform: rotate(180deg) scale(0.9);
+  }
+  75% {
+    border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+    transform: rotate(270deg) scale(1.05);
+  }
+}
+
+@keyframes buttonPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes staggeredFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glitch1 {
+  0%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(2px, 2px);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(2px, -2px);
+    opacity: 1;
+  }
+}
+
+@keyframes glitch2 {
+  0%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(2px, -2px);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(2px, 2px);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-2px, -2px);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-2px, 2px);
+    opacity: 1;
+  }
+}
+
+@keyframes bubbleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+/* Hover Effects for Interactive Elements */
+.magnetic {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.magnetic:hover {
+  transform: scale(1.05);
+}
+
+/* Loading Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s infinite;
+}
+
+@keyframes skeletonLoading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .orb {
+    filter: blur(20px);
+  }
+  
+  .shape {
+    transform: scale(0.7);
+  }
+  
+  .floating-action-btn {
+    padding: 12px 24px;
+  }
+  
+  .magnetic-cursor {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-orbs,
+  .morphing-shapes {
+    display: none;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .orb,
+  .shape,
+  .floating-action-btn,
+  .staggered-item,
+  .glitch-text-copy,
+  .liquid-button-bubble {
+    animation: none !important;
+  }
+  
+  .animated-text-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .orb {
+    opacity: 0.3;
+    filter: blur(20px);
+  }
+  
+  .floating-action-btn {
+    border: 2px solid #ffffff;
+  }
+  
+  .cursor-dot {
+    background: #ffffff;
+  }
+  
+  .cursor-ring {
+    border-color: #ffffff;
+  }
+}

@@ -1,0 +1,205 @@
+.emotion-container {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 900px;
+  margin: 32px auto;
+}
+
+.emotion-box {
+  flex: 1;
+  padding: 32px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.emotion-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.emotion-box:hover::before {
+  opacity: 1;
+}
+
+.left-box {
+  background: rgba(102, 126, 234, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+}
+
+.left-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+}
+
+.left-box .emoji {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.left-box h3 {
+  margin: 8px 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: capitalize;
+  position: relative;
+  z-index: 1;
+}
+
+.left-box p {
+  margin: 4px 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  position: relative;
+  z-index: 1;
+}
+
+.confidence-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-top: 16px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.confidence-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.right-box {
+  background: rgba(118, 75, 162, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(118, 75, 162, 0.3);
+  box-shadow: 0 8px 32px rgba(118, 75, 162, 0.2);
+  color: #f8fafc;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.right-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(118, 75, 162, 0.3);
+}
+
+.right-box .insight-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #a78bfa;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Light mode overrides */
+.light-mode .left-box {
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  box-shadow: 0 8px 32px rgba(79, 70, 229, 0.15);
+}
+
+.light-mode .left-box h3 {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.light-mode .left-box p {
+  color: #64748b;
+}
+
+.light-mode .right-box {
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
+  color: #1e293b;
+}
+
+.light-mode .right-box .insight-icon {
+  color: #7c3aed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .emotion-container {
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px auto;
+  }
+  
+  .emotion-box {
+    padding: 24px;
+  }
+  
+  .left-box .emoji {
+    font-size: 3rem;
+  }
+  
+  .left-box h3 {
+    font-size: 1.5rem;
+  }
+}

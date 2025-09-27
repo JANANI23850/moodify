@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AICompanion from "./AICompanion";
+import { ParticleSystem } from "./FloatingElements";
 
 export default function ChatJournal() {
   const navigate = useNavigate();
@@ -10,6 +12,13 @@ export default function ChatJournal() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const username = "guest";
+  const [currentMood] = useState("neutral");
+
+  const handleCompanionAction = (action) => {
+    if (action === 'music') {
+      navigate("/detection");
+    }
+  };
 
   // Fetch journal entries
   const fetchJournals = async () => {
@@ -112,6 +121,8 @@ export default function ChatJournal() {
 
   return (
    <>
+      {/* Background Effects */}
+      <ParticleSystem theme="dark" intensity="low" />
    
       <nav className="navbar">
         <div className="nav-container">
@@ -184,6 +195,13 @@ export default function ChatJournal() {
         </div>
       </div>
     </div>
+
+    {/* AI Companion for Chat */}
+    <AICompanion 
+      currentEmotion={currentMood}
+      isDetecting={loading}
+      onSuggestAction={handleCompanionAction}
+    />
      </>
   );
 }

@@ -1,0 +1,548 @@
+/* AI Companion Styles */
+.ai-companion {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 320px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-companion:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+}
+
+/* Companion Header */
+.companion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.companion-avatar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-circle {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float 3s ease-in-out infinite;
+}
+
+.companion-face {
+  font-size: 24px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(102, 126, 234, 0.4);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.companion-name h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.status {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: blink 2s ease-in-out infinite;
+}
+
+.companion-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.minimize-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.minimize-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Companion Body */
+.companion-body {
+  padding: 20px;
+}
+
+.message-bubble {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: messageSlideIn 0.5s ease-out;
+}
+
+.message-bubble:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.message-bubble.animating {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.message-bubble p {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.message-tail {
+  position: absolute;
+  bottom: -8px;
+  left: 24px;
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+  border-radius: 0 0 4px 0;
+}
+
+/* Companion Actions */
+.companion-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.action-btn:hover::before {
+  left: 100%;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.action-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.action-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.action-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Mood Indicator */
+.companion-mood-indicator {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+}
+
+.mood-bar {
+  height: 100%;
+  width: 100%;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: moodPulse 3s ease-in-out infinite;
+}
+
+.mood-bar.happy {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+}
+
+.mood-bar.sad {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.mood-bar.angry {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.mood-bar.surprise {
+  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+}
+
+.mood-bar.fear {
+  background: linear-gradient(90deg, #6b7280, #4b5563);
+}
+
+.mood-bar.disgust {
+  background: linear-gradient(90deg, #059669, #047857);
+}
+
+.mood-bar.neutral {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.mood-bar.detecting {
+  background: linear-gradient(90deg, #06b6d4, #0891b2);
+  animation: detectingPulse 1s ease-in-out infinite;
+}
+
+/* Minimized State */
+.ai-companion-minimized {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: float 3s ease-in-out infinite;
+}
+
+.ai-companion-minimized:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6);
+}
+
+.companion-icon {
+  font-size: 28px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Emotion-based Companion Styles */
+.ai-companion.happy {
+  border-color: rgba(251, 191, 36, 0.3);
+  box-shadow: 0 8px 32px rgba(251, 191, 36, 0.2);
+}
+
+.ai-companion.sad {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+}
+
+.ai-companion.angry {
+  border-color: rgba(239, 68, 68, 0.3);
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.2);
+}
+
+.ai-companion.surprise {
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+}
+
+.ai-companion.fear {
+  border-color: rgba(107, 114, 128, 0.3);
+  box-shadow: 0 8px 32px rgba(107, 114, 128, 0.2);
+}
+
+.ai-companion.disgust {
+  border-color: rgba(5, 150, 105, 0.3);
+  box-shadow: 0 8px 32px rgba(5, 150, 105, 0.2);
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moodPulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes detectingPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ai-companion {
+    width: 280px;
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .companion-header {
+    padding: 12px 16px;
+  }
+  
+  .companion-body {
+    padding: 16px;
+  }
+  
+  .message-bubble {
+    padding: 12px;
+  }
+  
+  .action-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-companion {
+    width: calc(100vw - 32px);
+    right: 16px;
+    left: 16px;
+  }
+  
+  .companion-actions {
+    flex-direction: column;
+  }
+  
+  .action-btn {
+    width: 100%;
+  }
+}
+
+/* Light Mode Overrides */
+.light-mode .ai-companion {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .companion-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .companion-name h4 {
+  color: #1e293b;
+}
+
+.light-mode .status {
+  color: #64748b;
+}
+
+.light-mode .minimize-btn {
+  background: rgba(0, 0, 0, 0.05);
+  color: #64748b;
+}
+
+.light-mode .minimize-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .message-bubble {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .message-bubble:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .message-bubble p {
+  color: #1e293b;
+}
+
+.light-mode .message-tail {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .action-btn.secondary {
+  background: rgba(0, 0, 0, 0.05);
+  color: #475569;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .action-btn.secondary:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .companion-mood-indicator {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .ai-companion,
+  .avatar-circle,
+  .companion-face,
+  .pulse-ring,
+  .companion-icon,
+  .mood-bar {
+    animation: none !important;
+  }
+  
+  .ai-companion {
+    transform: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .ai-companion {
+    border: 2px solid #ffffff;
+  }
+  
+  .message-bubble {
+    border: 2px solid #ffffff;
+  }
+  
+  .action-btn {
+    border: 2px solid #ffffff;
+  }
+}
